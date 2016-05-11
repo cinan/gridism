@@ -20,23 +20,19 @@
 .grid .unit {
   float: left;
   width: 100%;
-  padding: 10px;
+  padding-right: 20px;
 }
 
-/* This ensures the outer gutters are equal to the (doubled) inner gutters. */
-.grid .unit:first-child { padding-left: 20px; }
-.grid .unit:last-child { padding-right: 20px; }
-
-/* Nested grids already have padding though, so let’s nuke it */
-.unit .unit:first-child { padding-left: 0; }
-.unit .unit:last-child { padding-right: 0; }
-.unit .grid:first-child > .unit { padding-top: 0; }
-.unit .grid:last-child > .unit { padding-bottom: 0; }
+/* Last units should not have paddings */
+.grid .unit:last-child,
+.unit .unit:last-child {
+  padding-right: 0;
+}
 
 /* Let people nuke the gutters/padding completely in a couple of ways */
 .no-gutters .unit,
 .unit.no-gutters {
-  padding: 0 !important;
+  padding-right: 0;
 }
 
 /* Wrapping at a maximum width is optional */
@@ -106,8 +102,8 @@
     padding-right: 20px;
   }
   .unit .grid .unit {
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   /* Sometimes, you just want to be different on small screens */
