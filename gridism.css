@@ -18,7 +18,7 @@
 .grid [class*="w-"] {
   float: left;
   width: 100%;
-  padding-right: 20px;
+  padding-right: 1rem;
 }
 /* Last units should not have paddings */
 .grid [class*="w-"]:last-child,
@@ -92,8 +92,8 @@
 @media screen and (max-width: 568px) {
   .grid:not(.no-stacking-on-mobiles) > [class*="w-"] {
     width: 100% !important;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
   [class*="w-"] .grid [class*="w-"] {
     padding-left: 0;
