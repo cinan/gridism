@@ -1,91 +1,89 @@
-/*
- * Gridism
- * A simple, responsive, and handy CSS grid by @cobyism and @cinan
- * https://github.com/cinan/gridism
- */
+//Gridism
+//A simple, responsive, and handy CSS grid by @cinan. Inspired by @cobyism.
+//https://github.com/cinan/gridism
 
-unitClass = '[class*="w-"]';
-padding = 1rem;
-mobilePadding = 1rem;
-maxWidth = 960px;
-mobileMaxWidth = 568px;
+gridisism(
+  _unitClass = '[class*="w-"]',
+  _padding = 1rem,
+  _mobilePadding = 1rem,
+  _maxWidth = 960px,
+  _minWidth = 568px
+)
 
-/* Preserve some sanity */
-.grid,
-{unitClass} {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
+  define('unitClass', _unitClass, true)
+  define('padding', _padding, true)
+  define('mobilePadding', _mobilePadding, true)
+  define('maxWidth', _maxWidth, true)
+  define('minWidth', _minWidth, true)
 
-/* Set up some rules to govern the grid */
-.grid {
-  display: block;
-  clear: both;
+  //Preserve some sanity
+  .grid,
+  {unitClass}
+    -webkit-box-sizing: border-box
+    -moz-box-sizing: border-box
+    box-sizing: border-box
 
-  {unitClass} {
-    float: left;
-    width: 100%;
-    padding-right: padding;
-  }
-}
+  //Set up some rules to govern the grid
+  .grid
+    display: block
+    clear: both
 
-/* Last units should not have paddings */
-.grid {unitClass}:last-child,
-{unitClass} {unitClass}:last-child {
-  padding-right: 0;
-}
+    {unitClass}
+      float: left
+      width: 100%
+      padding-right: padding
 
-/* Let people nuke the gutters/padding completely in a couple of ways */
-.no-gutters {unitClass},
-{unitClass}.no-gutters {
-  padding-right: 0;
-}
+  //Last units should not have paddings
+  .grid {unitClass}:last-child,
+  {unitClass} {unitClass}:last-child
+    padding-right: 0
 
-/* Wrapping at a maximum width is optional */
-.wrap .grid,
-.grid.wrap {
-  max-width: maxWidth;
-  margin: 0 auto;
-}
+  //Let people nuke the gutters/padding completely in a couple of ways
+  .no-gutters {unitClass},
+  {unitClass}.no-gutters
+    padding-right: 0
 
-/* Width classes also have shorthand versions numbered as fractions
- * For example: for a grid unit 1/3 (one third) of the parent width,
- * simply apply class="w-1-3" to the element. */
-for $i in (1..5)
-  for $j in (1..5)
-    if $i < $j or $i == 1
-      .grid {'.w-' + $i + '-' + $j}
-        width: round($i / $j * 100%, 7);
+  //Wrapping at a maximum width is optional
+  .wrap .grid,
+  .grid.wrap
+    max-width: maxWidth
+    margin: 0 auto
 
-/* Clearfix after every .grid */
-.grid:before, .grid:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-.grid:after {
-  clear: both;
-}
+  //Width classes also have shorthand versions numbered as fractions
+  //For example: for a grid unit 1/3 (one third) of the parent width,
+  //simply apply class="w-1-3" to the element.
+  for $i in (1..5)
+    for $j in (1..5)
+      if $i < $j or $i == 1
+        .grid {'.w-' + $i + '-' + $j}
+          width: round($i / $j * 100%, 7)
 
-/* A property for a better rendering of images in units: in
-   this way bigger pictures are just resized if the unit
-   becomes smaller */
-{unitClass} img {
-  max-width: 100%;
-}
+  //Clearfix after every .grid
+  .grid:before, .grid:after
+    display: table
+    content: ""
+    line-height: 0
 
-/* Responsive Stuff */
-@media screen and (max-width: mobileMaxWidth) {
-  /* Stack anything that isn’t full-width on smaller screens
-     and doesn't provide the no-stacking-on-mobiles class */
-  .grid:not(.no-stacking-on-mobiles) > {unitClass} {
-    width: 100% !important;
-    padding-left: mobilePadding;
-    padding-right: mobilePadding;
-  }
-  {unitClass} .grid {unitClass} {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
+  .grid:after
+    clear: both
+
+  //A property for a better rendering of images in units: in
+  //this way bigger pictures are just resized if the unit
+  //becomes smaller
+  {unitClass} img
+    max-width: 100%
+
+  //Responsive Stuff
+  @media screen and (max-width: minWidth)
+    //Stack anything that isn’t full-width on smaller screens
+    //and doesn't provide the no-stacking-on-mobiles class
+    .grid:not(.no-stacking-on-mobiles) > {unitClass}
+      width: 100% !important
+      padding-left: mobilePadding
+      padding-right: mobilePadding
+
+    {unitClass} .grid {unitClass}
+      padding-left: 0
+      padding-right: 0
+
+gridisism(_padding: 40px)
