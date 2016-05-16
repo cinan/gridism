@@ -4,15 +4,15 @@
  * https://github.com/cinan/gridism
  */
 
-$unitClass = '[class*="w-"]';
-$padding = 1rem;
-$mobilePadding = 1rem;
-$maxWidth = 960px;
-$mobileMaxWidth = 568px;
+unitClass = '[class*="w-"]';
+padding = 1rem;
+mobilePadding = 1rem;
+maxWidth = 960px;
+mobileMaxWidth = 568px;
 
 /* Preserve some sanity */
 .grid,
-{$unitClass} {
+{unitClass} {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -23,29 +23,29 @@ $mobileMaxWidth = 568px;
   display: block;
   clear: both;
 
-  {$unitClass} {
+  {unitClass} {
     float: left;
     width: 100%;
-    padding-right: $padding;
+    padding-right: padding;
   }
 }
 
 /* Last units should not have paddings */
-.grid {$unitClass}:last-child,
-{$unitClass} {$unitClass}:last-child {
+.grid {unitClass}:last-child,
+{unitClass} {unitClass}:last-child {
   padding-right: 0;
 }
 
 /* Let people nuke the gutters/padding completely in a couple of ways */
-.no-gutters {$unitClass},
-{$unitClass}.no-gutters {
+.no-gutters {unitClass},
+{unitClass}.no-gutters {
   padding-right: 0;
 }
 
 /* Wrapping at a maximum width is optional */
 .wrap .grid,
 .grid.wrap {
-  max-width: $maxWidth;
+  max-width: maxWidth;
   margin: 0 auto;
 }
 
@@ -71,20 +71,20 @@ for $i in (1..5)
 /* A property for a better rendering of images in units: in
    this way bigger pictures are just resized if the unit
    becomes smaller */
-{$unitClass} img {
+{unitClass} img {
   max-width: 100%;
 }
 
 /* Responsive Stuff */
-@media screen and (max-width: $mobileMaxWidth) {
+@media screen and (max-width: mobileMaxWidth) {
   /* Stack anything that isn’t full-width on smaller screens
      and doesn't provide the no-stacking-on-mobiles class */
-  .grid:not(.no-stacking-on-mobiles) > {$unitClass} {
+  .grid:not(.no-stacking-on-mobiles) > {unitClass} {
     width: 100% !important;
-    padding-left: $mobilePadding;
-    padding-right: $mobilePadding;
+    padding-left: mobilePadding;
+    padding-right: mobilePadding;
   }
-  {$unitClass} .grid {$unitClass} {
+  {unitClass} .grid {unitClass} {
     padding-left: 0;
     padding-right: 0;
   }
