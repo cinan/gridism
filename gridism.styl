@@ -11,14 +11,12 @@ gridisism(
   supportRTL = true
 )
 
-  //Preserve some sanity
   .grid,
   {unitClass}
     -webkit-box-sizing: border-box
     -moz-box-sizing: border-box
     box-sizing: border-box
 
-  //Set up some rules to govern the grid
   .grid
     display: block
     clear: both
@@ -29,34 +27,27 @@ gridisism(
       padding-left: 0
       padding-right: padding
 
-  //Last units should not have paddings
   .grid {unitClass}:last-child,
   {unitClass} {unitClass}:last-child
     padding-left: 0
     padding-right: 0
 
-  //Let people nuke the gutters/padding completely in a couple of ways
   .no-gutters {unitClass},
   {unitClass}.no-gutters
     padding-left: 0
     padding-right: 0
 
-  //Wrapping at a maximum width is optional
   .wrap .grid,
   .grid.wrap
     max-width: maxWidth
     margin: 0 auto
 
-  //Width classes also have shorthand versions numbered as fractions
-  //For example: for a grid unit 1/3 (one third) of the parent width,
-  //simply apply class="w-1-3" to the element.
   for $i in (1..5)
     for $j in (1..5)
       if $i < $j or $i == 1
         .grid {'.w-' + $i + '-' + $j}
           width: round($i / $j * 100%, 7)
 
-  //Clearfix after every .grid
   .grid:before, .grid:after
     display: table
     content: ""
@@ -65,9 +56,6 @@ gridisism(
   .grid:after
     clear: both
 
-  //A property for a better rendering of images in units: in
-  //this way bigger pictures are just resized if the unit
-  //becomes smaller
   {unitClass} img
     max-width: 100%
 
@@ -88,10 +76,7 @@ gridisism(
         padding-left: 0
         padding-right: 0
 
-  //Responsive Stuff
   @media screen and (max-width: minWidth)
-    //Stack anything that isn’t full-width on smaller screens
-    //and doesn't provide the no-stacking-on-mobiles class
     .grid:not(.no-stacking-on-mobiles) > {unitClass}
       width: 100% !important
       padding-left: mobilePadding
