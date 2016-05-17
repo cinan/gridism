@@ -3,18 +3,13 @@
 //https://github.com/cinan/gridism
 
 gridisism(
-  _unitClass = '[class*="w-"]',
-  _padding = 1rem,
-  _mobilePadding = 1rem,
-  _maxWidth = 960px,
-  _minWidth = 568px
+  unitClass = '[class*="w-"]',
+  padding = 1rem,
+  mobilePadding = 1rem,
+  maxWidth = 960px,
+  minWidth = 568px,
+  supportRTL = true
 )
-
-  define('unitClass', _unitClass, true)
-  define('padding', _padding, true)
-  define('mobilePadding', _mobilePadding, true)
-  define('maxWidth', _maxWidth, true)
-  define('minWidth', _minWidth, true)
 
   //Preserve some sanity
   .grid,
@@ -31,16 +26,19 @@ gridisism(
     {unitClass}
       float: left
       width: 100%
+      padding-left: 0
       padding-right: padding
 
   //Last units should not have paddings
   .grid {unitClass}:last-child,
   {unitClass} {unitClass}:last-child
+    padding-left: 0
     padding-right: 0
 
   //Let people nuke the gutters/padding completely in a couple of ways
   .no-gutters {unitClass},
   {unitClass}.no-gutters
+    padding-left: 0
     padding-right: 0
 
   //Wrapping at a maximum width is optional
@@ -73,6 +71,23 @@ gridisism(
   {unitClass} img
     max-width: 100%
 
+  if supportRTL
+    html[dir=rtl]
+      .grid {unitClass}
+        float: right
+        padding-left: padding
+        padding-right: 0
+
+      .grid {unitClass}:last-child,
+      {unitClass} {unitClass}:last-child
+        padding-left: 0
+        padding-right: 0
+
+      .no-gutters {unitClass},
+      {unitClass}.no-gutters
+        padding-left: 0
+        padding-right: 0
+
   //Responsive Stuff
   @media screen and (max-width: minWidth)
     //Stack anything that isn’t full-width on smaller screens
@@ -86,4 +101,4 @@ gridisism(
       padding-left: 0
       padding-right: 0
 
-gridisism(_padding: 40px)
+gridisism()
